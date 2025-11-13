@@ -1,12 +1,12 @@
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
-import About from "./components/About";
 import Services from "./components/Services";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import ServiceDetail from "./pages/ServiceDetail";
-import ThankYou from "./components/ThankYou"; // import the ThankYou page
+import ThankYou from "./components/ThankYou";
+import WhatsAppButton from "./components/WhatsAppButton"; // Add this
 
 export default function App() {
   return (
@@ -18,7 +18,6 @@ export default function App() {
           element={
             <>
               <Hero />
-              <About />
               <Services />
               <Contact />
               <Footer />
@@ -26,8 +25,11 @@ export default function App() {
           }
         />
         <Route path="/services/:id" element={<ServiceDetail />} />
-        <Route path="/thankYou" element={<ThankYou />} /> {/* added Thank You route */}
+        <Route path="/thankYou" element={<ThankYou />} />
       </Routes>
+
+      {/* WhatsApp button appears on all pages */}
+      <WhatsAppButton />
     </div>
   );
 }

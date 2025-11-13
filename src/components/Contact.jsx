@@ -1,12 +1,23 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export default function Contact() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    // Get the "service" parameter from URL if available
+    const params = new URLSearchParams(location.search);
+    const service = params.get("service");
+    if (service) {
+      setMessage(`I’d like to inquire about ${service}.`);
+    }
+  }, [location.search]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Here you could handle sending the message via EmailJS or backend
-    // For now, just redirect to Thank You page
     navigate("/thankYou");
   };
 
@@ -51,6 +62,8 @@ export default function Contact() {
         <textarea
           placeholder="Your Message"
           rows="5"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
           className="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-nasi-maroon"
           required
         ></textarea>

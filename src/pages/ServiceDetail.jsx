@@ -1,104 +1,116 @@
 import { useParams, Link } from "react-router-dom";
 
-const SERVICE_DATA = {
-  cctv: {
-    title: "CCTV Installation",
-    summary:
-      "Comprehensive CCTV design, installation, and maintenance for residential, commercial, and industrial setups.",
-    details:
-      "We ensure crystal-clear surveillance with HD cameras, night vision, motion detection, and remote monitoring. Options include local NVR/DVR storage, cloud backup, analytics (people counting, perimeter detection), and mobile app access. Our team does site surveys, camera placement planning, and offers training and maintenance contracts.",
-  },
-  alarms: {
-    title: "Alarm Systems",
-    summary:
-      "State-of-the-art alarm systems with real-time alerts and intelligent detection.",
-    details:
-      "NASI Technologies delivers integrated alarm solutions for intrusion, fire, and environmental monitoring. Features include wired/wireless sensors, panic buttons, GSM/VoIP reporting, and integration with CCTV and smart devices. We configure notification workflows, monitoring options, and periodic testing to ensure reliability.",
-  },
-  isp: {
-    title: "ISP Solutions",
-    summary:
-      "Reliable, high-performance internet connectivity for homes and businesses.",
-    details:
-      "Our ISP services include fiber and wireless broadband with SLAs for uptime and support. We provide bandwidth planning, static IPs, managed routers, QoS for critical apps, and tailored packages for SMEs and enterprise clients. Onboarding includes site assessment, installation, and ongoing service-level support.",
-  },
-  network: {
-    title: "Network Design & Deployment",
-    summary:
-      "End-to-end network architecture, structured cabling, and deployment services.",
-    details:
-      "We provide professional network design, including site surveys, capacity planning, VLAN and security planning, structured cabling, switch and router deployment, Wi-Fi site surveys and controller-based solutions. Post-deployment we offer monitoring, documentation, and floor-plan mapping so your network is performant and scalable.",
-  },
-};
-
 export default function ServiceDetail() {
   const { id } = useParams();
-  const key = (id || "").toLowerCase();
 
-  const service = SERVICE_DATA[key];
+  const serviceDetails = {
+    cctv: {
+      title: "CCTV Installation",
+      description: `
+        Our CCTV installation service provides high-definition video surveillance 
+        designed to protect your home, business, or organization. 
+        We specialize in both IP and analog camera systems with remote monitoring capability, 
+        motion detection, and real-time alerts. 
+        NASI Technologies ensures professional setup, optimal camera positioning, and 
+        continuous support for maintenance and system upgrades.`,
+    },
+    alarms: {
+      title: "Alarm Systems",
+      description: `
+        We deliver reliable, smart alarm systems that keep your property secure 24/7. 
+        Our solutions include motion sensors, door and window alarms, 
+        and mobile notification integrations to ensure instant alerts when needed. 
+        Every installation is tailored to fit your space and security requirements.`,
+    },
+    isp: {
+      title: "ISP Solutions",
+      description: `
+        As part of our ISP solutions, NASI Technologies offers fast, stable, and 
+        scalable internet connectivity for homes, offices, and enterprises. 
+        We design and deploy network infrastructures with guaranteed uptime, 
+        performance monitoring, and professional technical support to ensure 
+        seamless digital operations.`,
+    },
+    network: {
+      title: "Network Design & Deployment",
+      description: `
+        Our team provides professional network design and deployment services for 
+        wired and wireless environments. 
+        We plan, implement, and optimize LAN/WAN infrastructures, 
+        ensuring high performance, reliability, and security. 
+        Whether for small businesses or large enterprises, our solutions scale with your growth.`,
+    },
+    webdev: {
+      title: "Web & System Development",
+      description: `
+        NASI Technologies builds custom web and system solutions designed to improve 
+        your organization’s efficiency and online presence. 
+        From dynamic websites to complete enterprise systems, 
+        we handle design, development, deployment, and support — ensuring your 
+        digital platforms are fast, secure, and tailored to your business goals.`,
+    },
+    techsupport: {
+      title: "Tech Support",
+      description: `
+        We provide professional, on-demand technical support for individuals 
+        and organizations. 
+        Our services include software troubleshooting, hardware diagnostics, 
+        system optimization, and remote assistance. 
+        NASI Technologies ensures that your systems stay functional, 
+        secure, and optimized for peak performance.`,
+    },
+  };
+
+  const service = serviceDetails[id];
 
   if (!service) {
     return (
-      <section className="py-20 px-8 max-w-4xl mx-auto text-center">
-        <h1 className="text-3xl font-bold mb-6 text-nasi-maroon">
-          Service not found
-        </h1>
-        <p className="text-gray-700 mb-6">
-          The service you requested does not exist. Return to the homepage to view available offerings.
+      <div className="min-h-screen flex flex-col justify-center items-center text-center p-6">
+        <h2 className="text-3xl font-bold text-nasi-maroon mb-4">Service Not Found</h2>
+        <p className="text-gray-600 mb-6">
+          The service you are looking for doesn’t exist or has been moved.
         </p>
         <Link
-          to="/"
-          className="inline-flex items-center gap-2 bg-nasi-maroon text-white px-6 py-2 rounded-lg shadow-md hover:bg-maroon-800 hover:shadow-lg transition-all duration-300"
+          to="/#services"
+          className="bg-nasi-maroon text-white px-6 py-3 rounded-lg hover:bg-maroon-800 transition"
         >
-          <span className="text-lg"></span>
-          <span>Back to Home</span>
+          Back to Services
         </Link>
-      </section>
+      </div>
     );
   }
 
   return (
-    <section className="py-20 px-8 max-w-4xl mx-auto">
-      <h1 className="text-4xl font-bold mb-4 text-nasi-maroon">{service.title}</h1>
-      <p className="text-gray-700 mb-6">{service.summary}</p>
+    <section className="min-h-screen bg-gray-50 py-20 px-6 flex flex-col justify-center items-center text-center">
+      <div className="max-w-3xl bg-white rounded-3xl shadow-xl p-10">
+        <h1 className="text-4xl font-bold text-nasi-maroon mb-6">
+          {service.title}
+        </h1>
+        <p className="text-gray-700 text-lg leading-relaxed mb-10 whitespace-pre-line">
+          {service.description}
+        </p>
 
-      <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-        <h2 className="text-xl font-semibold mb-3">What we offer</h2>
-        <p className="text-gray-700 leading-relaxed">{service.details}</p>
-      </div>
-
-      {/* Buttons */}
-      <div className="flex flex-wrap gap-4 mt-8">
-        {/* Back button */}
-        <Link
-          to="/"
-          className="inline-flex items-center gap-2 bg-nasi-maroon text-white px-6 py-2 rounded-lg shadow-md hover:bg-maroon-800 hover:shadow-lg transition-all duration-300"
-        >
-          <span className="text-lg"></span>
-          <span>Back to Home</span>
-        </Link>
-
-        {/* Contact button */}
-        <a
-          href="#contact"
-          className="inline-flex items-center gap-2 bg-nasi-maroon text-white px-6 py-2 rounded-lg shadow-md hover:bg-maroon-800 hover:shadow-lg transition-all duration-300"
-        >
-          <span>Contact Us about {service.title}</span>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-4 h-4"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
+        {/* Buttons Section */}
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+          <Link
+            to="/#services"
+            className="bg-nasi-maroon text-white font-semibold px-6 py-3 rounded-lg hover:bg-maroon-800 transition"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M17 8l4 4m0 0l-4 4m4-4H3"
-            />
-          </svg>
-        </a>
+            Back to Services
+          </Link>
+
+          {/* WhatsApp Contact Button */}
+          <a
+            href={`https://wa.me/254708950444?text=${encodeURIComponent(
+              `Hello, I am interested in your ${service.title} service.`
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-green-500 text-white font-semibold px-6 py-3 rounded-lg hover:bg-green-600 transition"
+          >
+            Contact via WhatsApp
+          </a>
+        </div>
       </div>
     </section>
   );

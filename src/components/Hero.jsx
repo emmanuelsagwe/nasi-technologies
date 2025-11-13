@@ -1,3 +1,5 @@
+import logo from "../assets/logo.png";
+
 export default function Hero() {
   return (
     <section
@@ -5,21 +7,22 @@ export default function Hero() {
       className="bg-nasi-maroon text-white text-center py-24 px-6 rounded-b-3xl shadow-lg"
     >
       <div className="max-w-4xl mx-auto">
-        {/* Headline */}
-        <h1 className="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight">
-          Secure. Connect. Empower.
+        {/* Headline / Tagline */}
+        <h1 className="text-3xl md:text-4xl font-extrabold mb-4 italic tracking-tight">
+          Peace of mind through technology
         </h1>
 
-        {/* Subtitle */}
-        <p className="text-lg md:text-xl mb-8 text-gray-100 leading-relaxed">
-          NASI Technologies delivers trusted <span className="font-semibold">CCTV</span>,{" "}
-          <span className="font-semibold">Alarm Systems</span>,{" "}
-          <span className="font-semibold">ISP Solutions</span>, and{" "}
-          <span className="font-semibold">Network Design & Deployment</span> — ensuring
-          security, speed, and connectivity for homes and businesses.
-        </p>
+        {/* Logo */}
+        <div className="flex justify-center mb-8">
+          <img
+            src={logo}
+            alt="NASI Technologies Logo"
+            className="h-64 w-64 rounded-2xl shadow-md"
+          />
+        </div>
 
-        {/* Buttons */}
+        {/* Buttons (commented out) */}
+        {/*
         <div className="flex flex-wrap justify-center gap-4">
           <a
             href="#services"
@@ -34,6 +37,7 @@ export default function Hero() {
             Contact Us
           </a>
         </div>
+        */}
       </div>
     </section>
   );

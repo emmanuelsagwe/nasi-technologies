@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Shield, Wifi, Camera, Network, Code, Smartphone } from "lucide-react";
+import { Link } from "react-router-dom"; // added Link
 
 export default function Services() {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -9,15 +10,13 @@ export default function Services() {
     {
       icon: <Camera size={70} />,
       title: "CCTV Installation",
-      short:
-        "High-definition surveillance systems for homes, offices, and enterprises.",
+      short: "High-definition surveillance systems for homes, offices, and enterprises.",
       link: "/services/cctv",
     },
     {
       icon: <Shield size={70} />,
       title: "Alarm Systems",
-      short:
-        "Smart and reliable alarm systems that protect your property 24/7.",
+      short: "Smart and reliable alarm systems that protect your property 24/7.",
       link: "/services/alarms",
     },
     {
@@ -57,7 +56,6 @@ export default function Services() {
       </h2>
 
       <div className="relative">
-        {/* Grid container with blur effect */}
         <motion.div
           className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-center items-center transition-all duration-500`}
           animate={{
@@ -67,9 +65,8 @@ export default function Services() {
           transition={{ duration: 0.4, ease: "easeInOut" }}
         >
           {services.map((service, index) => {
-            // Compute diagonal offsets
-            const offsetX = (index % 3) * 50 - 50; // left/right
-            const offsetY = index * -50 - 100; // top stagger
+            const offsetX = (index % 3) * 50 - 50;
+            const offsetY = index * -50 - 100;
 
             return (
               <motion.div
@@ -95,18 +92,14 @@ export default function Services() {
                 <p className="text-gray-100 text-base mb-5 leading-relaxed">
                   {service.short}
                 </p>
-                <motion.button
-                  whileTap={{ scale: 0.95 }}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    window.location.href = `/services/${service.link
-                      .split("/")
-                      .pop()}`;
-                  }}
-                  className="bg-white text-nasi-maroon font-semibold px-6 py-3 rounded-xl hover:bg-gray-200 transition text-lg"
-                >
-                  Learn More
-                </motion.button>
+                <motion.div whileTap={{ scale: 0.95 }}>
+                  <Link
+                    to={`/services/${service.link.split("/").pop()}`}
+                    className="block bg-white text-nasi-maroon font-semibold px-6 py-3 rounded-xl hover:bg-gray-200 transition text-lg"
+                  >
+                    Learn More
+                  </Link>
+                </motion.div>
               </motion.div>
             );
           })}

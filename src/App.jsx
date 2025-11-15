@@ -6,7 +6,7 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import ServiceDetail from "./pages/ServiceDetail";
 import ThankYou from "./components/ThankYou";
-import WhatsAppButton from "./components/WhatsAppButton"; // Add this
+import WhatsAppButton from "./components/WhatsAppButton";
 
 export default function App() {
   return (
